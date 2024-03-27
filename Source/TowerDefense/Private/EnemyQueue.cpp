@@ -79,3 +79,12 @@ bool UEnemyQueue::RemoveEnemy(APawn* _enemy)
 	
 	return false;
 }
+
+int UEnemyQueue::GetQueueSize()
+{
+	if (enemies.IsEmpty())
+	{
+		return 0;
+	}
+	return enemies.Num();
+}

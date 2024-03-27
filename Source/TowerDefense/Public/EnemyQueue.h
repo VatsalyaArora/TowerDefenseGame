@@ -28,6 +28,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Enemies")
 	bool RemoveEnemy(APawn* enemy);
 
+	UFUNCTION(BlueprintCallable, Category = "Enemies")
+	int GetQueueSize();
+
 		
 protected:
 	// Called when the game starts
