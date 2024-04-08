@@ -6,8 +6,16 @@
 #include "GameFramework/Actor.h"
 #include "Tile_Base.generated.h"
 
+UENUM(BlueprintType)
+enum Type {
+	Road = 0,
+	Grass = 1,
+	Trees = 2,
+	Water = 3
+};
+
 UCLASS()
-class TOWERDEFENSE_API ATile_Base : public AActor, public UNavAreaBase
+class TOWERDEFENSE_API ATile_Base : public AActor
 {
 	GENERATED_BODY()
 
@@ -31,6 +39,15 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = "Tile")
 	float StayTimer;
+
+	UPROPERTY(EditAnywhere, Category = "Tile")
+	bool IsStartPoint;
+
+	UPROPERTY(EditAnywhere, Category = "Tile")
+	bool IsEndPoint;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Tile")
+	TEnumAsByte<Type> tileType = Type::Grass;
 	
 	
 public:	
@@ -52,6 +69,12 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Tile")
 	void SetStayTimer(float _timer);
 
+	UFUNCTION(BlueprintCallable, Category = "Tile")
+	void SetIsStartPoint(bool _point);
+
+	UFUNCTION(BlueprintCallable, Category = "Tile")
+	void SetIsEndPoint(bool _point);
+
 	UFUNCTION(BlueprintPure, Category = "Tile")
 	bool GetTileSpawnable();
 
@@ -69,6 +92,12 @@ public:
 
 	UFUNCTION(BlueprintPure, Category = "Tile")
 	float GetStayTimer();
+
+	UFUNCTION(BlueprintPure, Category = "Tile")
+	bool GetIsStartPoint();
+
+	UFUNCTION(BlueprintPure, Category = "Tile")
+	bool GetIsEndPoint();
 
 
 	

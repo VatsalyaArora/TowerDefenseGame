@@ -27,13 +27,18 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Grid")
 	int Height;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Grid")
+	TSubclassOf<AActor> TileClass;
 	//Functions
 
 	UFUNCTION(BlueprintCallable, Category="Grid")
 	bool SpawnTiles();
 
+	UFUNCTION(BlueprintCallable, Category = "Grid")
+	TArray<ATile_Base*> GetNeighbours(int GridX, int GridY, TArray<ATile_Base*> allTiles);
 
-
+	UFUNCTION(BlueprintCallable, Category = "Grid")
+	ATile_Base* FindTile(int GridX, int GridY, TArray<ATile_Base*> allTiles);	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

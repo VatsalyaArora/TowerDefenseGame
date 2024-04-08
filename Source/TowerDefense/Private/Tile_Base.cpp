@@ -42,6 +42,16 @@ void ATile_Base::SetStayTimer(float _timer)
 	StayTimer = _timer;
 }
 
+void ATile_Base::SetIsStartPoint(bool _point)
+{
+	IsStartPoint = _point;
+}
+
+void ATile_Base::SetIsEndPoint(bool _point)
+{
+	IsEndPoint = _point;
+}
+
 bool ATile_Base::GetTileSpawnable()
 {
 	return CanPlayerSpawn;
@@ -70,6 +80,16 @@ bool ATile_Base::GetOccupied()
 float ATile_Base::GetStayTimer()
 {
 	return StayTimer;
+}
+
+bool ATile_Base::GetIsStartPoint()
+{
+	return IsStartPoint;
+}
+
+bool ATile_Base::GetIsEndPoint()
+{
+	return IsEndPoint;
 }
 
 // Called when the game starts or when spawned
