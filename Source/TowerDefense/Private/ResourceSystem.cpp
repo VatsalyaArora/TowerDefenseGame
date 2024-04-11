@@ -31,6 +31,19 @@ void AResourceSystem::ReduceCoins(int32 _coins)
 	Coins -= _coins;
 }
 
+void AResourceSystem::UpdateTowerTimes(FString TowerName, bool SpawnedOrDestroyed)
+{
+	FTowerResource* rowData = DataTableResourceRequired->FindRow<FTowerResource>(FName(TowerName), "");
+	if (SpawnedOrDestroyed && rowData->TimesSpawned < rowData->MaxTimesSpawn)
+	{
+		rowData->TimesSpawned++;
+	}
+	else if(!SpawnedOrDestroyed && rowData->TimesSpawned > 0)
+	{
+		rowData->TimesSpawned--;
+	}	
+}
+
 int32 AResourceSystem::GetMaxCoins()
 {
 	return MaxCoins;
@@ -64,6 +77,12 @@ void AResourceSystem::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	TArray<FTowerResource*> towersData;
+	DataTableResourceRequired->GetAllRows<FTowerResource>("", towersData);
+	for (int i = 0; i < towersData.Num(); i++)
+	{
+		towersData[i]->TimesSpawned = 0;
+	}
 }
 
 // Called every frame

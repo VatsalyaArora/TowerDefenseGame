@@ -53,12 +53,14 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Resource")
 	void SetCoins(int32 _coins);
 
-
 	UFUNCTION(BlueprintCallable, Category = "Resource")
 	void AddCoins(int32 _coins);
 
 	UFUNCTION(BlueprintCallable, Category = "Resource")
 	void ReduceCoins(int32 _coins);
+
+	UFUNCTION(BlueprintCallable, Category = "Resource")
+	void UpdateTowerTimes(FString TowerName, bool SpawnedOrDestroyed);
 
 	UFUNCTION(BlueprintPure, Category = "Resource")
 	int32 GetMaxCoins();
